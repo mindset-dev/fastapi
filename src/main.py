@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from .ai.gemini import Gemini
 from .auth.dependencies import get_user_identifier
 from .auth.throttling import apply_rate_limit
+from dotenv import load_dotenv
 
 
 # --- App Initialization ---
@@ -20,8 +21,10 @@ def load_system_prompt():
 
 
 system_prompt = load_system_prompt()
-gemini_api_key = os.getenv("GEMINI_API_KEY")
 
+load_dotenv()  # Loads variables from .env
+
+gemini_api_key = os.getenv("GEMINI_API_KEY")
 if not gemini_api_key:
     raise ValueError("GEMINI_API_KEY environment variable not set.")
 
