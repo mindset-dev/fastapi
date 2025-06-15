@@ -1,3 +1,40 @@
-*.pyc
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Environment
+.env
+*.env
+.venv/
+env/
 venv/
-.cursor
+
+# VSCode or IDE settings
+.vscode/
+.idea/
+
+# Dependency/lock files
+poetry.lock
+Pipfile.lock
+*.lock
+
+# Log files
+*.log
+
+# Byte-compiled files
+*.pyc
+
+# Mac & OS cruft
+.DS_Store
+
+# Docker
+*.db
+*.sqlite3
+
+# Build output
+dist/
+build/
+
