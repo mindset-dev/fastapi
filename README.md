@@ -7,14 +7,14 @@ A simple FastAPI project to demonstrate how to build an API server for an AI app
 **Create a virtual environment**
 
 ```bash
-python -m venv venv
-source venv/bin/activate
+python -m venv venv  | uv init
+source venv/bin/activate   | uv .env/bin/activate
 ```
 
 **Install dependencies**
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt  | uv add -r requirements.txt
 ```
 
 **Set up API Key**
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 Set your Gemini API key as an environment variable in your terminal. You can get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 ```bash
-export GEMINI_API_KEY="your_gemini_api_key"
+export GEMINI_API_KEY="your_gemini_api_key"   |  touch ../.env  (add  GEMINI_API_KEY=...)   
 ```
 
 For Windows users:
@@ -42,7 +42,7 @@ The application will load this key from your environment.
 To run the application, use the following command:
 
 ```bash
-uvicorn src.main:app --reload
+uvicorn src.main:app --reload  |  uvicorn src.main:app --host 0.0.0.0 --port 8888 --reload
 ```
 
 The API will be available at `http://127.0.0.1:8000`.
@@ -56,9 +56,9 @@ You can send a request to the chat API without an authentication token. These re
 You can send a request to the chat API without an authentication token. These requests are subject to a global rate limit.
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/chat" \
+curl -X POST "http://127.0.0.1:8888/chat" \
      -H "Content-Type: application/json" \
-     -d '{"prompt": "Why is the sky blue?"}'
+     -d '{"prompt": "How many peas in a pod?"}'
 ```
 
 #### Authenticated Request
@@ -66,7 +66,7 @@ curl -X POST "http://127.0.0.1:8000/chat" \
 For a higher rate limit, you can authenticate by providing a JWT token. Make sure to replace `YOUR_GENERATED_TOKEN` with a valid token.
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/chat" \
+curl -X POST "http://127.0.0.1:8888/chat" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer YOUR_GENERATED_TOKEN" \
      -d '{"prompt": "Why is the sky blue?"}'
@@ -96,7 +96,7 @@ You can now use the generated token to make authenticated requests.
 
 You can also use the auto-generated FastAPI documentation to interact with the API.
 
-Once the server is running, go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) in your browser.
+Once the server is running, go to [http://127.0.0.1:8888/docs](http://127.0.0.1:8888/docs) in your browser.
 
 ## Configuration
 
